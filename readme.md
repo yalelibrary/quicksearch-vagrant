@@ -25,6 +25,7 @@ vagrant ssh
 cd search-frontend
 # add YAML config, and start rails
 rails s
+# start other repos, as necessary
 ```
 
 [1] https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
