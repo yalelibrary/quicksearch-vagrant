@@ -10,9 +10,9 @@ In future, this repo's setup would likely get assimilated into the individual QS
 
 ## Steps
 
-As documented in this section, clone this repo, export your key, and run vagrant up. The first time VM will take about 15 mins. Add your YAML config files as usual.
+As documented in this section, clone this repo, export your key, and run vagrant up. The first time VM will take about 10-15 minutes. Add your YAML config files as usual.
 
-Make sure you have set up your key in GitHub first [1].
+Make sure you have set up your key in GitHub[1].
 
 ```
 git clone git@github.com:yalelibrary/quicksearch-vagrant.git
@@ -22,7 +22,7 @@ key=~/.ssh/id_rsa
 vagrant up
 # observe message "==> default: Done. Happy coding!"
 vagrant ssh
-cd search-fronend
+cd search-frontend
 # add YAML config, and start rails
 rails s
 ```
