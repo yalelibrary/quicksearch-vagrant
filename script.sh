@@ -55,6 +55,7 @@ if [ ! -d "/opt/oracle/instantclient_12_1" ]; then
    git clone git@github.com:yalelibrary/binaries.git
    #su -c "export SSH_AUTH_SOCK=$SSH_AUTH_SOCK; git clone git@github.com:yalelibrary/binaries.git" -l vagrant
    sudo mv binaries/*.zip $ORACLE
+   rm -rf /home/vagrant/binaries
    cd $ORACLE
    sudo unzip instantclient-basic-linux.x64-12.1.0.1.0.zip  
    sudo unzip instantclient-sqlplus-linux.x64-12.1.0.1.0.zip
