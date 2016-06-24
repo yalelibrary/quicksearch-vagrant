@@ -23,6 +23,7 @@ vagrant up
 # observe message "==> default: Done. Happy coding!"
 vagrant ssh
 cd search-frontend
+rvm @search-frontend
 # add YAML config, and start rails
 rails s
 # start other repos, as necessary
