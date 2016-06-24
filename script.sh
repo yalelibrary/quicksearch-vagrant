@@ -1,10 +1,11 @@
 # QuickSearch stack setup
+# (work in progress)
 # ------------------------
-
-# git sanity check:
 
 # Install your GitHub key as usual so that Vagrant can do git clone:
 # (ref: https://coderwall.com/p/p3bj2a/cloning-from-github-in-vagrant-using-ssh-agent-forwarding)
+
+# git sanity check:
 
 if [[ ! -e /home/vagrant/.ssh/known_hosts ]]; then
   echo "Adding github.com to known_hosts"

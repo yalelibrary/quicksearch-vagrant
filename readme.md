@@ -1,6 +1,6 @@
 # QS Vagrant Setup
 
-The project creates the full development stack (CentOS 7, rvm, Ruby, MySql, PostgreSql, Oracle Instant Client), combines the three QuickSearch repos (search-frontend,
+The project creates the full development stack (CentOS 7, rvm, Ruby, MySql, PostgreSql, Oracle Instant Client), combines the three Quicksearch repos (search-frontend,
 search-backend, quicksearch-morris), and any required gem dependencies.
 
 It tries to replicate the existing stack -- therefore, there might be opportunities for improvements (e.g., removing unnecessary libraries or adding additional useful libraries). The installation script will continue evolving (to add config, comply with best practices, etc.). 
