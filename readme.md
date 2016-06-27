@@ -1,4 +1,4 @@
-# QS Vagrant Setup
+# Quicksearch Vagrant Setup
 
 The project creates the full development stack (CentOS 7, rvm, Ruby, MySql, PostgreSql, Oracle Instant Client), combines the three Quicksearch repos (search-frontend,
 search-backend, quicksearch-morris), and installs any required gem dependencies.
@@ -28,16 +28,20 @@ vagrant up
 # observe message "==> default: Done. Happy coding!"
 vagrant ssh
 
-# start any repo that frontend reies on.. and then:
-
-cd search-frontend
-# add YAML config files, start rails
+# start any repo that frontend relies on, if necessary
+cd /home/vagrant/search-backend
+rails s -p8080 &
+cd /home/vagrant/search-frontend
+# start rails
 rails server -b 0.0.0.0
 
-# start other repos, as necessary
 ```
-Quicksearch should be visible now: http://127.0.0.1:3000
+
+Quicksearch should be visible now at: http://127.0.0.1:3000
 
 ![qs](quicksearch.png)
+
+
+## References
 
 [1] https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
