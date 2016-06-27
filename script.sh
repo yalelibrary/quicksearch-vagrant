@@ -98,6 +98,7 @@ LD_LIBRARY_PATH=/opt/oracle/instantclient_12_1/
 export LD_LIBRARY_PATH
 echo $LD_LIBRARY_PATH
 gem install bundler
+mv /tmp/omniauth.yml config/omniauth.yml
 bundle install
 rake db:migrate
 

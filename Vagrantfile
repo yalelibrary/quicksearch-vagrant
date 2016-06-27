@@ -71,7 +71,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision :file do |file|
      file.source="/tmp/omniauth.yml"
-     file.destination="/home/vagrant/search-frontend/config/omniauth.yml"
+     file.destination="/tmp/omniauth.yml"
   end
 
   config.vm.provision "shell", path: "script.sh", privileged: false
