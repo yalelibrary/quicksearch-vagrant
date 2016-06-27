@@ -22,11 +22,15 @@ key=~/.ssh/id_rsa
 vagrant up
 # observe message "==> default: Done. Happy coding!"
 vagrant ssh
+
+# start any repo that frontend reies on.. and then:
+
 cd search-frontend
-rvm @search-frontend
-# add YAML config, and start rails
-rails s
+# add YAML config files, start rails
+rails server -b 0.0.0.0
+
 # start other repos, as necessary
 ```
+Quicksearch should be visible now: http://127.0.0.1:3000
 
 [1] https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
