@@ -12,11 +12,9 @@ In future, this repo's setup would likely get assimilated into the individual QS
 
 As documented in this section, clone this repo, export your key, and run vagrant up. The first time VM will take about 10-15 minutes. The setup picks up ominauth.yml from your computer, but add other YAML config files if necessary.
 
-Before you begin:
+1. Copy the quicksearch ominauth.yml file to /tmp folder. 
 
-Copy the quicksearch ominauth.yml file to /tmp folder. 
-
-Make sure you have set up your key in GitHub [1].
+2. Make sure you have set up your key in GitHub [1]. If not:
 
 ```
 ssh-keygen -t rsa -b 4096 -C you@email.com
@@ -26,11 +24,12 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 # it should print "Identity added . . ."
 pbcopy < ~/.ssh/id_rsa.pub
+# now paste this key into your GitHub SSH Settings page
 ssh -T git@github.com
 # enter "yes" to recognize host
 ```
 
-Finally, clone the repo and start vagrant:
+3. Finally, clone the repo and start vagrant:
 
 ```
 git clone git@github.com:yalelibrary/quicksearch-vagrant.git
@@ -46,11 +45,11 @@ cd /home/vagrant/search-backend
 rails s -p8080 &
 cd /home/vagrant/search-frontend
 # start rails
-rails server -b 0.0.0.0
+rails s -b 0.0.0.0
 
 ```
 
-Quicksearch should be visible now at: http://127.0.0.1:3000
+Quicksearch should be visible now at: localhost:3000 or  http://127.0.0.1:3000
 
 ![qs](quicksearch.png)
 
