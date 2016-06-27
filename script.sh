@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # QuickSearch stack setup
 # (work in progress)
 # ------------------------
@@ -91,11 +92,14 @@ cd /home/vagrant/search-frontend
 rvm 1.9.3
 rvm gemset create search-frontend
 rvm gemset use search-frontend
+echo "search-frontend" > .ruby-gemset
+echo "ruby-1.9.3-p551" > .ruby-version
 LD_LIBRARY_PATH=/opt/oracle/instantclient_12_1/
 export LD_LIBRARY_PATH
 echo $LD_LIBRARY_PATH
 gem install bundler
 bundle install
+rake db:migrate
 
 # repo (2/3): search-backend:
 
@@ -109,10 +113,13 @@ cd /home/vagrant/search-backend
 rvm 1.9.3
 rvm gemset create search-backend
 rvm gemset use search-backend
+echo "search-backend" > .ruby-gemset
+echo "ruby-1.9.3-p551" > .ruby-version
 LD_LIBRARY_PATH=/opt/oracle/instantclient_12_1/
 export LD_LIBRARY_PATH
 gem install bundler
 bundle install
+rake db:migrate
 
 # repo (3/3): quicksearch-morris
 
@@ -126,6 +133,8 @@ cd /home/vagrant/quicksearch-morris
 rvm 1.9.3
 rvm gemset create quicksearch-morris
 rvm gemset use quicksearch-morris
+echo "quicksearch-morris" > .ruby-gemset
+echo "ruby-1.9.3-p551" > .ruby-version
 gem install bundler
 sudo yum install -y postgresql-libs
 sudo yum install -y postgresql-devel
