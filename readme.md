@@ -14,10 +14,23 @@ As documented in this section, clone this repo, export your key, and run vagrant
 
 Before you begin:
 
-1. Make sure you have set up your key in GitHub [1].
-2. Copy the quicksearch ominauth.yml file to /tmp folder. 
+Copy the quicksearch ominauth.yml file to /tmp folder. 
 
-Finally:
+Make sure you have set up your key in GitHub [1].
+
+```
+ssh-keygen -t rsa -b 4096 -C you@email.com
+# press enter to save key to your home folder
+eval "$(ssh-agent -s)"
+# it should print "Agent pid . . ."
+ssh-add ~/.ssh/id_rsa
+# it should print "Identity added . . ."
+pbcopy < ~/.ssh/id_rsa.pub
+ssh -T git@github.com
+# enter "yes" to recognize host
+```
+
+Finally, clone the repo and start vagrant:
 
 ```
 git clone git@github.com:yalelibrary/quicksearch-vagrant.git
