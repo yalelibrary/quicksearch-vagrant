@@ -68,12 +68,13 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
   # SHELL
-  config.vm.provision "shell", path: "script.sh", privileged: false
-  config.ssh.forward_agent = true
 
   config.vm.provision :file do |file|
      file.source="/tmp/omniauth.yml"
      file.destination="/home/vagrant/search-frontend/config/omniauth.yml"
   end
+
+  config.vm.provision "shell", path: "script.sh", privileged: false
+  config.ssh.forward_agent = true
 
 end
