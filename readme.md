@@ -38,4 +38,6 @@ rails server -b 0.0.0.0
 ```
 Quicksearch should be visible now: http://127.0.0.1:3000
 
+![qs](quicksearch.png)
+
 [1] https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
