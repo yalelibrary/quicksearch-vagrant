@@ -10,9 +10,10 @@ In future, this repo's setup would likely get assimilated into the individual QS
 
 ## Steps
 
-As documented in this section, clone this repo, export your key, and run vagrant up. The first time VM will take about 10-15 minutes. Add your YAML config files as usual.
+As documented in this section, clone this repo, export your key, and run vagrant up. The first time VM will take about 10-15 minutes. The setup picks up ominauth.yml from your computer, but add other YAML config files if necessary.
 
-Make sure you have set up your key in GitHub [1].
+1. Make sure you have set up your key in GitHub [1].
+2. Copy the quiksearch ominauth.yml file to /tmp folder. 
 
 ```
 git clone git@github.com:yalelibrary/quicksearch-vagrant.git
