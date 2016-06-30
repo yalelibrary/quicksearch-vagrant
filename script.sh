@@ -155,8 +155,8 @@ fi
 mv /tmp/schema.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core/conf/schema.xml
 mv /tmp/solrconfig.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core/conf/solrconfig.xml
 
-#mv /tmp/findit/schema.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core2/conf/schema.xml
-#mv /tmp/findit/solrconfig.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core2/conf/solrconfig.xml
+mv /tmp/findit/schema.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core2/conf/schema.xml
+mv /tmp/findit/solrconfig.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core2/conf/solrconfig.xml
 
 cd /home/vagrant/blacklight-jetty-4.10.4
 #java -jar start.jar
