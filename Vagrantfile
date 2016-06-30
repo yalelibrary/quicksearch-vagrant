@@ -85,16 +85,6 @@ Vagrant.configure(2) do |config|
     file.destination="/tmp/solrconfig.xml"
   end
 
-  config.vm.provision :file do |file|
-    file.source="tmp/findit/schema.xml"
-    file.destination="/tmp/findit/schema.xml"
-  end
-
-  config.vm.provision :file do |file|
-    file.source="tmp/findit/solrconfig.xml"
-    file.destination="/tmp/findit/solrconfig.xml"
-  end
-
   config.vm.provision "shell", path: "script.sh", privileged: false
   config.ssh.forward_agent = true
 
