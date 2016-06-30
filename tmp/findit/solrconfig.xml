@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+  <!-- NOTE: various comments and unused configuration possibilities have been purged
+     from this file.  Please refer to http://wiki.apache.org/solr/SolrConfigXml,
+     as well as the default solrconfig file included with Solr -->
+  
+  <abortOnConfigurationError>${solr.abortOnConfigurationError:true}</abortOnConfigurationError>
+  
+  <luceneMatchVersion>LUCENE_40</luceneMatchVersion>
+
+  <directoryFactory name="DirectoryFactory" class="${solr.directoryFactory:solr.StandardDirectoryFactory}"/>
+
+  <!-- solr lib dirs -->
+  <lib dir="../lib/contrib/analysis-extras/lib" />
+  <lib dir="../lib/contrib/analysis-extras/lucene-libs" />
+  
+  <dataDir>${solr.data.dir:}</dataDir>
+
+  <requestHandler name="search" class="solr.SearchHandler" default="true">
+    <!-- default values for query parameters can be specified, these
+         will be overridden by parameters in the request
+      -->
+     <lst name="defaults">
+       <str name="defType">edismax</str>
+       <str name="echoParams">explicit</str>
+       <str name="q.alt">*:*</str>
+       <str name="mm">2&lt;-1 5&lt;-2 6&lt;90%</str>
+       <int name="qs">1</int>
+       <int name="ps">2</int>
+       <float name="tie">0.01</float>
+       <!-- this qf and pf are used by default, if not otherwise specified by
+            client. The default blacklight_config will use these for the
+            "keywords" search. See the author_qf/author_pf, title_qf, etc 
+            below, which the default blacklight_config will specify for
+            those searches. You may also be interested in:
+            http://wiki.apache.org/solr/LocalParams
+       -->
+       <str name="qf">
+        creator_tsim^10
+        id^5
+        oid_isi^5
+        subject_topic_tsim^10
+        title_tsim^10
+        abstract_tsim
+        access_restrictions_tsim
+        accession_number_ssim
+        call_number_ssim
+        caption_ssim
+        complex_hierarchy_tsim
+        coordinates_ssim
+        course_info_tsim
+        culture_tsim
+        date_depicted_ssim
+        date_dtsim
+        date_sim
+        digital_collection_ssim
+        digital_ssim
+        edition_ssim
+        event_sim 
+        format_ssim
+        genre_ssim
+        isbn_ssim
+        issn_ssim
+        job_number_ssim
+        language_ssim
+        local_subject_tsim
+        materials_ssim
+        musuem_repository_ssim
+        note_citation_tsim
+        notes_tsim
+        orbis_barcode_ssim
+        other_dates_ssim
+        period_style_tsim
+        physical_description_ssim
+        projection_ssim
+        publishedCreated_ssim
+        related_exhibit_tsim
+        scale_ssim
+        series_tsim
+        source_created_tsim
+        source_creator_tsim
+        source_edition_tsim
+        source_note_tsim
+        source_title_tsim
+        subject_geographic_code_ssim
+        subject_geographic_tsim
+        subject_name_tsim
+        subject_sim
+        tribe_tsim
+        variant_titles_tsim
+        yale_collection_tsim
+       </str>
+       <str name="pf">
+          all_text_timv^10
+       </str>
+
+       <str name="author_qf">
+        creator_tsim^10
+       </str>
+       <str name="author_pf">
+        creator_tsim^10
+       </str>
+       <str name="title_qf">
+         title_tsim^10
+       </str>
+       <str name="title_pf">
+        title_tsim^10
+       </str>
+       <str name="subject_qf">
+        local_subject_tsim
+        subject_geographic_tsim
+        subject_topic_tsim
+       </str>
+       <str name="subject_pf">
+        local_subject_tsim
+        subject_geographic_tsim
+        subject_topic_tsim
+       </str>
+       <str name="fulltext_qf">
+        fulltext_open_tsim^20
+        fulltext_restricted_tsim^20
+        creator_tsim^10
+        id^5
+        oid_isi^5
+        subject_topic_tsim^10
+        title_tsim^10
+        abstract_tsim
+        access_restrictions_tsim
+        accession_number_ssim
+        call_number_ssim
+        caption_ssim
+        complex_hierarchy_tsim
+        coordinates_ssim
+        course_info_tsim
+        culture_tsim
+        date_depicted_ssim
+        date_dtsim
+        date_sim
+        digital_collection_ssim
+        digital_ssim
+        edition_ssim
+        event_sim 
+        format_ssim
+        genre_ssim
+        isbn_ssim
+        issn_ssim
+        job_number_ssim
+        language_ssim
+        local_subject_tsim
+        materials_ssim
+        musuem_repository_ssim
+        note_citation_tsim
+        notes_tsim
+        orbis_barcode_ssim
+        other_dates_ssim
+        period_style_tsim
+        physical_description_ssim
+        projection_ssim
+        publishedCreated_ssim
+        related_exhibit_tsim
+        scale_ssim
+        series_tsim
+        source_created_tsim
+        source_creator_tsim
+        source_edition_tsim
+        source_note_tsim
+        source_title_tsim
+        subject_geographic_code_ssim
+        subject_geographic_tsim
+        subject_name_tsim
+        subject_sim
+        tribe_tsim
+        variant_titles_tsim
+        yale_collection_tsim
+       </str>
+       <str name="fulltext_pf">
+        fulltext_open_tsim^20
+        fulltext_restricted_tsim^20
+        creator_tsim^10
+        id^5
+        oid_isi^5
+        subject_topic_tsim^10
+        title_tsim^10
+        abstract_tsim
+        access_restrictions_tsim
+        accession_number_ssim
+        call_number_ssim
+        caption_ssim
+        complex_hierarchy_tsim
+        coordinates_ssim
+        course_info_tsim
+        culture_tsim
+        date_depicted_ssim
+        date_dtsim
+        date_sim
+        digital_collection_ssim
+        digital_ssim
+        edition_ssim
+        event_sim 
+        format_ssim
+        genre_ssim
+        isbn_ssim
+        issn_ssim
+        job_number_ssim
+        language_ssim
+        local_subject_tsim
+        materials_ssim
+        musuem_repository_ssim
+        note_citation_tsim
+        notes_tsim
+        orbis_barcode_ssim
+        other_dates_ssim
+        period_style_tsim
+        physical_description_ssim
+        projection_ssim
+        publishedCreated_ssim
+        related_exhibit_tsim
+        scale_ssim
+        series_tsim
+        source_created_tsim
+        source_creator_tsim
+        source_edition_tsim
+        source_note_tsim
+        source_title_tsim
+        subject_geographic_code_ssim
+        subject_geographic_tsim
+        subject_name_tsim
+        subject_sim
+        tribe_tsim
+        variant_titles_tsim
+        yale_collection_tsim
+       </str>
+
+       <str name="fulltext_open_qf">
+        fulltext_open_tsim^20
+        creator_tsim^10
+        id^5
+        oid_isi^5
+        subject_topic_tsim^10
+        title_tsim^10
+        abstract_tsim
+        access_restrictions_tsim
+        accession_number_ssim
+        call_number_ssim
+        caption_ssim
+        complex_hierarchy_tsim
+        coordinates_ssim
+        course_info_tsim
+        culture_tsim
+        date_depicted_ssim
+        date_dtsim
+        date_sim
+        digital_collection_ssim
+        digital_ssim
+        edition_ssim
+        event_sim 
+        format_ssim
+        genre_ssim
+        isbn_ssim
+        issn_ssim
+        job_number_ssim
+        language_ssim
+        local_subject_tsim
+        materials_ssim
+        musuem_repository_ssim
+        note_citation_tsim
+        notes_tsim
+        orbis_barcode_ssim
+        other_dates_ssim
+        period_style_tsim
+        physical_description_ssim
+        projection_ssim
+        publishedCreated_ssim
+        related_exhibit_tsim
+        scale_ssim
+        series_tsim
+        source_created_tsim
+        source_creator_tsim
+        source_edition_tsim
+        source_note_tsim
+        source_title_tsim
+        subject_geographic_code_ssim
+        subject_geographic_tsim
+        subject_name_tsim
+        subject_sim
+        tribe_tsim
+        variant_titles_tsim
+        yale_collection_tsim
+       </str>
+       <str name="fulltext_open_pf">
+        fulltext_open_tsim^20
+        creator_tsim^10
+        id^5
+        oid_isi^5
+        subject_topic_tsim^10
+        title_tsim^10
+        abstract_tsim
+        access_restrictions_tsim
+        accession_number_ssim
+        call_number_ssim
+        caption_ssim
+        complex_hierarchy_tsim
+        coordinates_ssim
+        course_info_tsim
+        culture_tsim
+        date_depicted_ssim
+        date_dtsim
+        date_sim
+        digital_collection_ssim
+        digital_ssim
+        edition_ssim
+        event_sim 
+        format_ssim
+        genre_ssim
+        isbn_ssim
+        issn_ssim
+        job_number_ssim
+        language_ssim
+        local_subject_tsim
+        materials_ssim
+        musuem_repository_ssim
+        note_citation_tsim
+        notes_tsim
+        orbis_barcode_ssim
+        other_dates_ssim
+        period_style_tsim
+        physical_description_ssim
+        projection_ssim
+        publishedCreated_ssim
+        related_exhibit_tsim
+        scale_ssim
+        series_tsim
+        source_created_tsim
+        source_creator_tsim
+        source_edition_tsim
+        source_note_tsim
+        source_title_tsim
+        subject_geographic_code_ssim
+        subject_geographic_tsim
+        subject_name_tsim
+        subject_sim
+        tribe_tsim
+        variant_titles_tsim
+        yale_collection_tsim
+       </str>
+	   
+       <str name="fl">
+         *, 
+         score
+       </str>
+
+       <str name="facet">true</str>
+       <str name="facet.mincount">1</str>
+       <str name="facet.limit">10</str>
+       <str name="facet.field">active_fedora_model_ssi</str>
+       <str name="facet.field">object_type_si</str>
+       
+       <str name="spellcheck">true</str>
+       <str name="spellcheck.dictionary">default</str>
+       <str name="spellcheck.onlyMorePopular">true</str>
+       <str name="spellcheck.extendedResults">true</str>
+       <str name="spellcheck.collate">false</str>
+       <str name="spellcheck.count">5</str>
+
+     </lst>
+    <arr name="last-components">
+      <str>spellcheck</str>
+    </arr>
+  </requestHandler>
+
+  <requestHandler name="permissions" class="solr.SearchHandler" >
+    <lst name="defaults">
+      <str name="facet">off</str>
+      <str name="echoParams">all</str>
+      <str name="rows">1</str>
+      <str name="q">{!raw f=id v=$id}</str> <!-- use id=666 instead of q=id:666 -->
+      <str name="fl">
+        id,
+        access_ssim,
+        discover_access_group_ssim,discover_access_person_ssim,
+        read_access_group_ssim,read_access_person_ssim,
+        edit_access_group_ssim,edit_access_person_ssim,
+        depositor_ti,
+        embargo_release_date_dtsi
+        inheritable_access_ssim,
+        inheritable_discover_access_group_ssim,inheritable_discover_access_person_ssim,
+        inheritable_read_access_group_ssim,inheritable_read_access_person_ssim,
+        inheritable_edit_access_group_ssim,inheritable_edit_access_person_ssim,
+        inheritable_embargo_release_date_dtsi
+      </str>
+    </lst>
+  </requestHandler>
+  
+  <requestHandler name="standard" class="solr.SearchHandler">
+     <lst name="defaults">
+       <str name="echoParams">explicit</str>
+       <str name="defType">lucene</str>
+     </lst>
+  </requestHandler>
+
+  <!-- for requests to get a single document; use id=666 instead of q=id:666 -->
+  <requestHandler name="document" class="solr.SearchHandler" >
+    <lst name="defaults">
+      <str name="echoParams">all</str>
+      <str name="fl">*</str>
+      <str name="rows">1</str>
+      <str name="q">{!raw f=id v=$id}</str> <!-- use id=666 instead of q=id:666 -->
+    </lst>
+  </requestHandler>
+
+
+  <searchComponent name="spellcheck" class="solr.SpellCheckComponent">
+    <str name="queryAnalyzerFieldType">textSpell</str>
+    <!-- Multiple "Spell Checkers" can be declared and used by this component
+      (e.g. for title_spell field)
+      -->
+    <lst name="spellchecker">
+      <str name="name">default</str>
+      <str name="field">spell</str>
+      <str name="spellcheckIndexDir">./spell</str>
+      <str name="buildOnOptimize">true</str>
+    </lst>
+  </searchComponent>
+
+ <!-- 8/13/13 - BR: Added replication stanze -->
+  <requestHandler name="/replication" class="solr.ReplicationHandler" >
+    <lst name="master">
+        <str name="replicateAfter">startup</str>
+        <str name="backupAfter">optimize</str>
+        <str name="confFiles">solrconfig_slave.xml:solrconfig.xml,x.xml,y.xml</str>
+    </lst>
+</requestHandler> 
+  
+  <requestDispatcher handleSelect="true" >
+    <requestParsers enableRemoteStreaming="true" multipartUploadLimitInKB="2048" />
+  </requestDispatcher>
+  
+  <requestHandler name="/analysis/field" startup="lazy" class="solr.FieldAnalysisRequestHandler" />
+  <requestHandler name="/update" class="solr.UpdateRequestHandler"  />
+  <requestHandler name="/admin/" class="org.apache.solr.handler.admin.AdminHandlers" />
+  
+  <requestHandler name="/admin/ping" class="solr.PingRequestHandler">
+    <lst name="invariants">
+      <str name="q">solrpingquery</str>
+    </lst>
+    <lst name="defaults">
+      <str name="echoParams">all</str>
+    </lst>
+  </requestHandler>
+  
+  <!-- config for the admin interface --> 
+  <admin>
+    <defaultQuery>search</defaultQuery>
+  </admin>
+  
+</config>

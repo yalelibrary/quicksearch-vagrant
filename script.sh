@@ -80,6 +80,9 @@ rvm requirements
 
 rvm install 1.9.3
 
+#install java
+sudo yum install -y java-1.7.0-openjdk
+
 # repo (1/3): search-frontend:
 
 cd /home/vagrant
@@ -140,5 +143,22 @@ gem install bundler
 sudo yum install -y postgresql-libs
 sudo yum install -y postgresql-devel
 bundle install
+
+#install solr
+cd /home/vagrant
+if [ ! -d "/home/vagrant/blacklight-jetty-4.10.4" ]; then
+    wget https://github.com/projectblacklight/blacklight-jetty/archive/v4.10.4.tar.gz
+    tar -zxvf v4.10.4.tar.gz
+    cp -r /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core2
+fi
+
+mv /tmp/schema.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core/conf/schema.xml
+mv /tmp/solrconfig.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core/conf/solrconfig.xml
+
+mv /tmp/findit/schema.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core2/conf/schema.xml
+mv /tmp/findit/solrconfig.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core2/conf/solrconfig.xml
+
+cd /home/vagrant/blacklight-jetty-4.10.4
+#java -jar start.jar
 
 echo "Done. Happy coding!"

@@ -23,6 +23,7 @@ Vagrant.configure(2) do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
     config.vm.network "forwarded_port", guest: 3000, host: 3000
+    config.vm.network "forwarded_port", guest: 8983, host: 8983
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -70,8 +71,28 @@ Vagrant.configure(2) do |config|
   # SHELL
 
   config.vm.provision :file do |file|
-     file.source="/tmp/omniauth.yml"
+     file.source="tmp/omniauth.yml"
      file.destination="/tmp/omniauth.yml"
+  end
+
+  config.vm.provision :file do |file|
+    file.source="tmp/clio/schema.xml"
+    file.destination="/tmp/schema.xml"
+  end
+
+  config.vm.provision :file do |file|
+    file.source="tmp/clio/solrconfig.xml"
+    file.destination="/tmp/solrconfig.xml"
+  end
+
+  config.vm.provision :file do |file|
+    file.source="tmp/findit/schema.xml"
+    file.destination="/tmp/findit/schema.xml"
+  end
+
+  config.vm.provision :file do |file|
+    file.source="tmp/findit/solrconfig.xml"
+    file.destination="/tmp/findit/solrconfig.xml"
   end
 
   config.vm.provision "shell", path: "script.sh", privileged: false
