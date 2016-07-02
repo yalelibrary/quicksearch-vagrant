@@ -11,7 +11,7 @@ This setup would likely split up into individual QS projects in the near future,
 
 As documented in this section, clone this repo, export your key, and run vagrant up. The first time VM will take about 10-15 minutes. The setup picks up ominauth.yml from your computer, but add other YAML config files if necessary.
 
-1. Make sure you have set up your key in GitHub [1]. If not:
+First, set up your key in GitHub [1], if you haven't already.
 
 ```
 ssh-keygen -t rsa -b 4096 -C you@email.com
@@ -26,7 +26,7 @@ ssh -T git@github.com
 # enter "yes" to recognize host
 ```
 
-2. Finally, clone the repo and start vagrant:
+Finally, clone the repo and start vagrant:
 
 ```
 git clone git@github.com:yalelibrary/quicksearch-vagrant.git
@@ -50,7 +50,14 @@ Quicksearch should be visible now at: localhost:3000 or  http://127.0.0.1:3000
 
 ![qs](quicksearch.png)
 
+## Notes
+
+Edit your repo's gemfile in case you see gem dependency errors in your system (e.g., add the line 'gem json' in Gemfile if "voayager-api" gem fails for search-backend). Do a "vagrant reload --provision" to verify after editing Gemfile.
+(There might be better ways also.)
+
+Note that these gem errors are not due to Vagrant. 
 
 ## References
 
 [1] https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+
