@@ -1,20 +1,17 @@
 # Quicksearch Vagrant Setup
 
-The project creates the full development stack (CentOS 7, rvm, Ruby, MySql, PostgreSql, Oracle Instant Client), combines the three Quicksearch repos (search-frontend,
-search-backend, quicksearch-morris), and installs any required gem dependencies.
+The project creates the full development stack (CentOS 7, rvm, Ruby, MySql, PostgreSql, Oracle Instant Client, Solr), combines the three Quicksearch repos (search-frontend,
+search-backend, quicksearch-morris), and tries to install any required gem dependencies.
 
-It tries to replicate the existing stack -- therefore, there might be opportunities for improvements (e.g., removing unnecessary libraries or adding additional useful libraries). The installation script will continue evolving (to add config, comply with best practices, etc.). 
+It tries to replicate the existing stack (for the most part). There might be opportunities for improvements (e.g., removing unnecessary libraries or adding additional useful libraries). The installation script will continue evolving (to add config, comply with best practices, etc.). 
 
-In future, this repo's setup would likely get assimilated into the individual QS projects, along the style of the rubymine-vagrant project. 
-
+This setup would likely split up into individual QS projects in the near future, along the style of the rubymine-vagrant project. 
 
 ## Steps
 
 As documented in this section, clone this repo, export your key, and run vagrant up. The first time VM will take about 10-15 minutes. The setup picks up ominauth.yml from your computer, but add other YAML config files if necessary.
 
-1. Copy the quicksearch ominauth.yml file to /tmp folder. 
-
-2. Make sure you have set up your key in GitHub [1]. If not:
+1. Make sure you have set up your key in GitHub [1]. If not:
 
 ```
 ssh-keygen -t rsa -b 4096 -C you@email.com
@@ -29,7 +26,7 @@ ssh -T git@github.com
 # enter "yes" to recognize host
 ```
 
-3. Finally, clone the repo and start vagrant:
+2. Finally, clone the repo and start vagrant:
 
 ```
 git clone git@github.com:yalelibrary/quicksearch-vagrant.git
