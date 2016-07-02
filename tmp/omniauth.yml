@@ -1,0 +1,10 @@
+sso:
+  port: 443
+  scheme: https
+  identifier: quicksearch-dev
+  secret: test
+  redirect_uri: http://libdev.library.yale.edu:3006/users/auth/sso/callback
+  authorization_endpoint: https://sso-dev.library.yale.edu/connect/authorize
+  token_endpoint: https://sso-dev.library.yale.edu/connect/token
+  userinfo_endpoint: https://sso-dev.library.yale.edu/connect/userinfo
+  logout_endpoint: https://sso-dev.library.yale.edu/connect/endsession

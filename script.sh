@@ -56,7 +56,11 @@ fi
 if [ ! -d "/opt/oracle/instantclient_12_1" ]; then
    git clone git@github.com:yalelibrary/binaries.git
    #su -c "export SSH_AUTH_SOCK=$SSH_AUTH_SOCK; git clone git@github.com:yalelibrary/binaries.git" -l vagrant
+   
+   # qs core:
+   cp binaries/qs-dev.zip /tmp
    sudo mv binaries/*.zip $ORACLE
+   
    rm -rf /home/vagrant/binaries
    cd $ORACLE
    sudo unzip instantclient-basic-linux.x64-12.1.0.1.0.zip  
@@ -152,13 +156,41 @@ if [ ! -d "/home/vagrant/blacklight-jetty-4.10.4" ]; then
     cp -r /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core2
 fi
 
-mv /tmp/schema.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core/conf/schema.xml
-mv /tmp/solrconfig.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core/conf/solrconfig.xml
+SOLR=/home/vagrant/blacklight-jetty-4.10.4/
+echo $SOLR
 
-mv /tmp/findit/schema.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core2/conf/schema.xml
-mv /tmp/findit/solrconfig.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core2/conf/solrconfig.xml
+# create find it schema
+echo "Creating findit core"
+mv /tmp/findit/schema.xml $SOLR/solr/blacklight-core2/conf/schema.xml
+mv /tmp/findit/solrconfig.xml $SOLR/solr/blacklight-core2/conf/solrconfig.xml
 
-cd /home/vagrant/blacklight-jetty-4.10.4
-#java -jar start.jar
+# create quicksearch core
+echo "Creating qs core"
+mv /tmp/qs-dev.zip $SOLR/solr
+cd $SOLR/solr
+pwd
+unzip -o qs-dev.zip
+cd -
+cp -r $SOLR/solr/qs-dev $SOLR/solr/blacklight-core
+# mv /tmp/schema.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core/conf/schema.xml
+# mv /tmp/solrconfig.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core/conf/solrconfig.xml
 
+# temporary: till the repo solr.yml has localhost instead of hydratest reference)
+echo "Modifying search-frontend's solr.yml and app_config.yml to point to localhost"
+sed -i -e 's/hydratest.library.yale.edu:8083/localhost:8983/g' /home/vagrant/search-frontend/config/solr.yml
+sed -i -e 's/clio-hydra/blacklight-core/g' /home/vagrant/search-frontend/config/solr.yml
+sed -i -e 's/hydratest.library.yale.edu:8083/localhost:8983/g' /home/vagrant/search-frontend/config/app_config.yml
+sed -i -e 's/collectiontest1/blacklight-core2/g' /home/vagrant/search-frontend/config/app_config.yml
+
+
+# start solr
+echo "Starting Solr"
+cd $SOLR
+java -jar start.jar &
+
+# start search-frontend
+cd /home/vagrant/search-frontend
+rails s -b 0.0.0.0 &
+
+echo "search-frontend url: localhost:3000"
 echo "Done. Happy coding!"

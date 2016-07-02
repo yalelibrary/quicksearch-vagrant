@@ -76,13 +76,8 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision :file do |file|
-    file.source="tmp/clio/schema.xml"
-    file.destination="/tmp/schema.xml"
-  end
-
-  config.vm.provision :file do |file|
-    file.source="tmp/clio/solrconfig.xml"
-    file.destination="/tmp/solrconfig.xml"
+    file.source="tmp/clio/qs-dev.zip"
+    file.destination="/tmp/qs-dev.zip"
   end
 
   config.vm.provision :file do |file|
