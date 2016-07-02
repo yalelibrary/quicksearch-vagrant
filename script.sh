@@ -54,6 +54,7 @@ if [ ! -d $ORACLE ]; then
 fi
 
 if [ ! -d "/opt/oracle/instantclient_12_1" ]; then
+   echo "Downloading binaries"
    git clone git@github.com:yalelibrary/binaries.git
    #su -c "export SSH_AUTH_SOCK=$SSH_AUTH_SOCK; git clone git@github.com:yalelibrary/binaries.git" -l vagrant
    
@@ -171,9 +172,11 @@ cd $SOLR/solr
 pwd
 unzip -o qs-dev.zip
 cd -
+rm -r $SOLR/solr/blacklight-core
 cp -r $SOLR/solr/qs-dev $SOLR/solr/blacklight-core
-# mv /tmp/schema.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core/conf/schema.xml
-# mv /tmp/solrconfig.xml /home/vagrant/blacklight-jetty-4.10.4/solr/blacklight-core/conf/solrconfig.xml
+cp $SOLR/solr/blacklight-core2/core.properties $SOLR/solr/blacklight-core/core.properties
+rm -r $SOLR/solr/qs-dev
+rm -r $SOLR/solr/qs-dev.zip
 
 # temporary: till the repo solr.yml has localhost instead of hydratest reference)
 echo "Modifying search-frontend's solr.yml and app_config.yml to point to localhost"
@@ -190,7 +193,7 @@ java -jar start.jar &
 
 # start search-frontend
 cd /home/vagrant/search-frontend
-rails s -b 0.0.0.0 &
+rails s -b 0.0.0.0
 
 echo "search-frontend url: localhost:3000"
 echo "Done. Happy coding!"
