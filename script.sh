@@ -191,9 +191,4 @@ echo "Starting Solr"
 cd $SOLR
 java -jar start.jar &
 
-# start search-frontend
-cd /home/vagrant/search-frontend
-rails s -b 0.0.0.0
-
-echo "search-frontend url: localhost:3000"
 echo "Done. Happy coding!"
