@@ -179,12 +179,11 @@ rm -r $SOLR/solr/qs-dev
 rm -r $SOLR/solr/qs-dev.zip
 
 # temporary: till the repo solr.yml has localhost instead of hydratest reference)
-echo "Modifying search-frontend's solr.yml and app_config.yml to point to localhost"
+echo "Modifying search-frontend's solr.yml and app_config.yml to point to localhost. Please fix this."
 sed -i -e 's/hydratest.library.yale.edu:8083/localhost:8983/g' /home/vagrant/search-frontend/config/solr.yml
 sed -i -e 's/clio-hydra/blacklight-core/g' /home/vagrant/search-frontend/config/solr.yml
 sed -i -e 's/hydratest.library.yale.edu:8083/localhost:8983/g' /home/vagrant/search-frontend/config/app_config.yml
-sed -i -e 's/collectiontest1/blacklight-core2/g' /home/vagrant/search-frontend/config/app_config.yml
-
+sed -i -e 's/search-test.library.yale.edu\/search-backend/localhost:3001/g' /home/vagrant/search-frontend/config/app_config.yml
 
 # start solr
 echo "Starting Solr"
