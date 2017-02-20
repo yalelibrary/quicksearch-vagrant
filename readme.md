@@ -45,6 +45,7 @@ cd /home/vagrant/search-frontend
 rails s -b 0.0.0.0
 
 ```
+Please note: In the event you get a 'access denied (public key)', re-run lines 34 and 35 on your computer
 
 Quicksearch should be visible now at: localhost:3000 or  http://127.0.0.1:3000
 
